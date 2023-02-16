@@ -64,5 +64,63 @@ int main(${insert(`int argc, char* argv[]`)}) {
 }
     `;
 
-    yield* waitUntil("Parse Arguments");
+    yield* waitUntil("Now Next Parse");
+
+    yield* code().selection(lines(0, Infinity), 0.32); // Makes the entire thing visible
+
+    yield* waitUntil("Print Arguments C Style");
+
+    yield* code().edit(2.5)`
+#include <iostream>
+
+int main(int argc, char* argv[]) {
+    ${edit(
+        `
+    std::cout << "Hello World" << "\\n";`,
+        `
+    for (int i = 0; i < argc; i ++) {
+        
+    }`
+    )}
+}
+    `;
+
+    yield* waitUntil("Now Next Print");
+
+    yield* code().selection(lines(0, Infinity), 0.32); // Makes the entire thing visible
+
+    yield* waitUntil("Print out");
+
+    yield* code().edit(2.5)`
+#include <iostream>
+
+int main(int argc, char* argv[]) {
+    for (int i = 0; i < argc; i ++) {
+        ${insert(`std::cout << argv[i] << " ";`)}
+    }
+}
+    `;
+
+    yield* waitUntil("Now Next NewLine");
+
+    yield* code().selection(lines(0, Infinity), 0.32); // Makes the entire thing visible
+
+    yield* waitUntil("Don't Forget NewLine");
+
+    yield* code().edit(1.3)`
+#include <iostream>
+
+int main(int argc, char* argv[]) {
+    for (int i = 0; i < argc; i ++) {
+        std::cout << argv[i] << " ";
+    }${insert(`
+    std::cout << "\\n";`)}
+}
+    `;
+
+    yield* waitUntil("Next Step");
+
+    yield* code().selection(lines(0, Infinity), 0.32); // Makes the entire thing visible
+
+    yield* waitUntil("Placeholder")
 });

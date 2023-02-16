@@ -11,8 +11,36 @@
       "targetTime": 2.00104821802935
     },
     {
-      "name": "Parse Arguments",
+      "name": "Now Next Parse",
       "targetTime": 4.016666666666667
+    },
+    {
+      "name": "Print Arguments C Style",
+      "targetTime": 5.35
+    },
+    {
+      "name": "Now Next Print",
+      "targetTime": 7.85
+    },
+    {
+      "name": "Print out",
+      "targetTime": 9.199772387100074
+    },
+    {
+      "name": "Now Next NewLine",
+      "targetTime": 11.7
+    },
+    {
+      "name": "Don't Forget NewLine",
+      "targetTime": 12.363333333333333
+    },
+    {
+      "name": "Next Step",
+      "targetTime": 13.666666666666666
+    },
+    {
+      "name": "Placeholder",
+      "targetTime": 17.375
     }
   ]
 }
