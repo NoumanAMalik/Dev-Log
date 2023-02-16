@@ -19,6 +19,8 @@ export default makeScene2D(function* (view) {
     const code = createRef<CodeBlock>();
     const codeBlock = createRef<Rect>();
 
+    yield* waitUntil("Hello World");
+
     yield view.add(
         <>
             <Rect
@@ -34,11 +36,14 @@ export default makeScene2D(function* (view) {
                     ref={code}
                     fontSize={24}
                     lineHeight={36}
+                    offsetX={-1}
+                    x={-960 / 2}
                     fontFamily={"JetBrains Mono"}
+                    language={"c++"}
                     code={() => `
 #include <iostream>
 
-int main(int argc, char* argv[]) {
+int main() {
     std::cout << "Hello World" << "\\n";
 }
                 `}
@@ -47,5 +52,17 @@ int main(int argc, char* argv[]) {
         </>
     );
 
-    yield* slideTransition(Direction.Bottom, 2);
+    yield* slideTransition(Direction.Bottom, 1.34);
+
+    yield* waitUntil("Arguments");
+
+    yield* code().edit(2)`
+#include <iostream>
+
+int main(${insert(`int argc, char* argv[]`)}) {
+    std::cout << "Hello World" << "\\n";
+}
+    `;
+
+    yield* waitUntil("Parse Arguments");
 });

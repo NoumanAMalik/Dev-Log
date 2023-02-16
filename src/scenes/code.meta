@@ -1,4 +1,18 @@
 {
   "version": 1,
-  "seed": 1919948172
+  "seed": 1919948172,
+  "timeEvents": [
+    {
+      "name": "Hello World",
+      "targetTime": 0.4706498951781971
+    },
+    {
+      "name": "Arguments",
+      "targetTime": 2.00104821802935
+    },
+    {
+      "name": "Parse Arguments",
+      "targetTime": 4.016666666666667
+    }
+  ]
 }
